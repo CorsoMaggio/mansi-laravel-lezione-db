@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+    public function index()
+    {
+        $books = Book::all();
+        return view('index', ['books' => $books]);
+    }
     public function create()
     {
         return view('create');
@@ -14,6 +19,8 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
+
+
         Book::create([
             'name' => $request->name,
             'years' => $request->years,

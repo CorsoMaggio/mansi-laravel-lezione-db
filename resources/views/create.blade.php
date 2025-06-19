@@ -12,7 +12,7 @@
          @csrf
          <div class="mb-3">
              <label for="" class="form-label">Titolo Libro</label>
-             <input type="text" value="{{ old('name') }}" class="form-control" name="name">
+             <input type="text" value="{{ old('name') }}" class="form-control" name="ciccio">
              @error('name')
                  {{ $message }}
              @enderror
