@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
+
 class BookController extends Controller
 {
     public function index()
@@ -19,13 +20,16 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-
+        $request->validate([
+            'name' => 'required',
+            'pages' => ['required', 'integer'],
+        ]);
 
         Book::create([
             'name' => $request->name,
             'years' => $request->years,
             'pages' => $request->pages,
         ]);
-        dd('ok');
+        return redirect()->route('index');
     }
 }
