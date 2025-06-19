@@ -30,6 +30,13 @@ class BookController extends Controller
             'years' => $request->years,
             'pages' => $request->pages,
         ]);
-        return redirect()->route('index');
+        return redirect()
+            ->route('index')
+            ->with('success', 'Complimenti! Libroi creato con successo!');
+    }
+
+    public function show(Book $book)
+    {
+        return view('show', ['book' => $book]);
     }
 }
