@@ -11,6 +11,31 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('create') }}">Crea Libro</a>
                 </li>
+                @auth
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">Logout</button>
+                                </form>
+                            </li>
+
+                        </ul>
+                    </div>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Accedi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">Registrati</a>
+                    </li>
+                @endauth
+
 
             </ul>
         </div>
