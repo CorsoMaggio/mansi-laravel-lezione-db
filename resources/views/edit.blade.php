@@ -43,6 +43,21 @@
                      {{ $message }}
                  @enderror
              </div>
+             <div class="mb-3">
+                 <label for="exampleFormControlInput4" class="form-label">Autore</label>
+                 <select class="form-control" id="exampleFormControlInput4" name="author_id">
+                     @foreach ($authors as $author)
+                         <option @if ($author->id == $book->author_id) selected @endif value="{{ $author->id }}">
+                             {{ $author->firstname }}</option>
+                         {{-- <option @selected($author->id == $book->author_id) value="{{ $author->id }}">
+                             {{ $author->firstname }}</option> --}}
+                     @endforeach
+                 </select>
+                 @error('author_id')
+                     {{ $message }}
+                 @enderror
+             </div>
+
              <div class="col-12">
                  <button type="submit" class="btn btn-primary">Aggiorna</button>
              </div>

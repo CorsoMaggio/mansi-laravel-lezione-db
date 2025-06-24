@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('create');
+        $authors = Author::all();
+        return view('create', compact('authors'));
     }
 
     public function store(Request $request)
@@ -32,6 +34,7 @@ class BookController extends Controller
             'years' => $request->years,
             'pages' => $request->pages,
             'price' => $request->price,
+            'author_id' => $request->author_id,
         ]);
         return redirect()
             ->route('index')
@@ -45,7 +48,8 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        return view('edit', ['book' => $book]);
+        $authors = Author::all();
+        return view('edit', ['book' => $book, 'authors' => $authors]);
     }
 
     public function update(Request $request, Book $book)
@@ -61,6 +65,7 @@ class BookController extends Controller
             'years' => $request->years,
             'pages' => $request->pages,
             'price' => $request->price,
+            'author_id' => $request->author_id,
         ]);
         return redirect()
             ->route('index')

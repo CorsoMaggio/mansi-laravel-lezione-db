@@ -64,6 +64,7 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
+
         $request->validate([
             'firstname' => ['required', 'string'],
             'lastname' => ['string'],
@@ -84,6 +85,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
+        //z$author->book->author_id = null;
         $author->delete();
         return redirect()
             ->route('authors.index')
