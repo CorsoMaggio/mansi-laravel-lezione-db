@@ -35,7 +35,14 @@
                      {{ $message }}
                  @enderror
              </div>
-
+             <div class="mb-3">
+                 <label for="exampleFormControlInput3" class="form-label">Prezzo</label>
+                 <input type="text" value="{{ $book->price }}" class="form-control" id="exampleFormControlInput3"
+                     name="price" placeholder="">
+                 @error('price')
+                     {{ $message }}
+                 @enderror
+             </div>
              <div class="col-12">
                  <button type="submit" class="btn btn-primary">Aggiorna</button>
              </div>

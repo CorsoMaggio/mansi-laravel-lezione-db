@@ -24,12 +24,14 @@ class BookController extends Controller
         $request->validate([
             'name' => 'required',
             'pages' => ['required', 'integer'],
+            'price' => ['decimal:2'],
         ]);
 
         Book::create([
             'name' => $request->name,
             'years' => $request->years,
             'pages' => $request->pages,
+            'price' => $request->price,
         ]);
         return redirect()
             ->route('index')
@@ -51,12 +53,14 @@ class BookController extends Controller
         $request->validate([
             'name' => 'required',
             'pages' => ['required', 'integer'],
+            'price' => ['decimal:2'],
         ]);
 
         $book->update([
             'name' => $request->name,
             'years' => $request->years,
             'pages' => $request->pages,
+            'price' => $request->price,
         ]);
         return redirect()
             ->route('index')
