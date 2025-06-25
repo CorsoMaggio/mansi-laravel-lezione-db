@@ -5,7 +5,7 @@
 // use App\Http\Controllers\CategoryController;
 // use App\Http\Controllers\PageController;
 
-use App\Http\Controllers\{AuthorController, BookController, CategoryController, PageController};
+use App\Http\Controllers\{AuthorController, BookController, CategoryController, ItalyController, PageController};
 
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +30,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('authors', AuthorController::class);
     Route::resource('categories', CategoryController::class);
 });
+
+Route::get('/comuni', [ItalyController::class, 'town']);
