@@ -31,13 +31,17 @@ class BookController extends Controller
             'pages' => ['required', 'integer'],
             'price' => ['decimal:2'],
         ]);
-
+        $image = '';
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('covers', 'public');
+        }
         $book = Book::create([
             'name' => $request->name,
             'years' => $request->years,
             'pages' => $request->pages,
             'price' => $request->price,
             'author_id' => $request->author_id,
+            'image' => $image,
         ]);
         $book->categories()->attach($request->categories);
         return redirect()

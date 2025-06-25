@@ -9,7 +9,7 @@
                  </ul>
              </div>
          @endif
-         <form action="{{ route('store') }}" method="POST">
+         <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
              @csrf
              <div class="mb-3">
                  <label for="" class="form-label">Titolo Libro</label>
@@ -63,6 +63,20 @@
                          </label>
                      </div>
                  @endforeach
+             </div>
+             <div class="mb-3">
+                 <label for="exampleFormControlInput3" class="form-label">Copertina</label>
+                 <input type="file" name="image" class="form-control" id="exampleFormControlInput3">
+                 @error('image')
+                     {{ $message }}
+                 @enderror
+             </div>
+             <div class="mb-3">
+                 <label for="exampleFormControlInput3" class="form-label">DOcumento Identita</label>
+                 <input type="file" name="document" class="form-control" id="exampleFormControlInput3">
+                 @error('document')
+                     {{ $message }}
+                 @enderror
              </div>
              <div class="col-12">
                  <button type="submit" class="btn btn-primary">Salva</button>

@@ -34,4 +34,6 @@
         </div>
     </div>
 
+    <img src="/images/immagine.jpeg" alt="">
+
 </x-template>
