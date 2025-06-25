@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 
@@ -18,24 +19,27 @@ class BookController extends Controller
     public function create()
     {
         $authors = Author::all();
-        return view('create', compact('authors'));
+        $categories = Category::all();
+        return view('create', compact('authors', 'categories'));
     }
 
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required',
             'pages' => ['required', 'integer'],
             'price' => ['decimal:2'],
         ]);
 
-        Book::create([
+        $book = Book::create([
             'name' => $request->name,
             'years' => $request->years,
             'pages' => $request->pages,
             'price' => $request->price,
             'author_id' => $request->author_id,
         ]);
+        $book->categories()->attach($request->categories);
         return redirect()
             ->route('index')
             ->with('success', 'Complimenti! Libroi creato con successo!');
@@ -49,7 +53,12 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         $authors = Author::all();
-        return view('edit', ['book' => $book, 'authors' => $authors]);
+        $categories = Category::all();
+        return view('edit', [
+            'book' => $book,
+            'authors' => $authors,
+            'categories' => $categories
+        ]);
     }
 
     public function update(Request $request, Book $book)
@@ -67,6 +76,8 @@ class BookController extends Controller
             'price' => $request->price,
             'author_id' => $request->author_id,
         ]);
+        $book->categories()->detach();
+        $book->categories()->attach($request->categories);
         return redirect()
             ->route('index')
             ->with('success', 'Complimenti! Libroi modificato con successo!');
@@ -75,6 +86,8 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         //azione
+        //$book->author_id = null;
+        $book->categories()->detach();
         $book->delete();
         return redirect()
             ->route('index')

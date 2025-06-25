@@ -14,7 +14,8 @@
 
                     <a class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill"
                         href="{{ route('authors.index') }}">Lista Autori</a>
-
+                    <a class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill"
+                        href="{{ route('categories.index') }}">Lista categorie</a>
                 </div>
             @endauth
 

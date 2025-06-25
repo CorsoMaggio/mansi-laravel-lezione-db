@@ -85,7 +85,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //z$author->book->author_id = null;
+
         $author->delete();
         return redirect()
             ->route('authors.index')

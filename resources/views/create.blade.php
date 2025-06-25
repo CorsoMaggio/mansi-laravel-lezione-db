@@ -53,7 +53,17 @@
                      {{ $message }}
                  @enderror
              </div>
-
+             <div class="mb-3">
+                 @foreach ($categories as $category)
+                     <div class="form-check">
+                         <input class="form-check-input" name="categories[]" type="checkbox"
+                             value="{{ $category->id }}" id="category-{{ $category->id }}">
+                         <label class="form-check-label" for="category-{{ $category->id }}">
+                             {{ $category->name }}
+                         </label>
+                     </div>
+                 @endforeach
+             </div>
              <div class="col-12">
                  <button type="submit" class="btn btn-primary">Salva</button>
              </div>
